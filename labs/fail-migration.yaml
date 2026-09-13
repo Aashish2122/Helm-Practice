@@ -1,0 +1,14 @@
+# Deliberately broken migration, layered on top of values-prod.yaml.
+migration:
+  enabled: true
+  command:
+    - /bin/sh
+    - -c
+    - |
+      echo "==> Starting migration"
+      echo "==> ERROR: column 'tags' already exists"
+      exit 1
+
+# A version bump that must NOT reach the cluster.
+image:
+  tag: "1.25-alpine"

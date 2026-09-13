@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "notekeeper.fullname" . }}-test-connection
+  labels:
+    {{- include "notekeeper.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  restartPolicy: Never
+  containers:
+    - name: smoke-test
+      image: curlimages/curl:8.10.1
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          set -e
+          URL="http://{{ include "notekeeper.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}"
+
+          echo "==> GET ${URL}"
+          curl -sf --max-time 10 "${URL}" > /dev/null
+          echo "    OK: service responded"
+
+          echo "==> Checking status is 200"
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "${URL}")
+          [ "$CODE" = "200" ] || { echo "    FAIL: got ${CODE}"; exit 1; }
+          echo "    OK: 200"
+
+          echo "All smoke tests passed."

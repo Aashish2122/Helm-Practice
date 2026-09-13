@@ -32,3 +32,13 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 60
+# Database migration Job, run as a pre-install/pre-upgrade hook.
+migration:
+  enabled: false
+  command:
+    - /bin/sh
+    - -c
+    - |
+      echo "==> Starting migration"
+      sleep 5
+      echo "==> Migration complete"

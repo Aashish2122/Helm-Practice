@@ -1,7 +1,8 @@
 # Prod: more replicas, higher ceilings.
 # Note: only `limits` is overridden. `requests` comes from values.yaml.
 replicaCount: 3
-
+image:
+  tag: "1.26-alpine"
 resources:
   limits:
     cpu: 500m
@@ -12,3 +13,5 @@ autoscaling:
   enabled: true
   minReplicas: 3
   maxReplicas: 15
+migration:
+  enabled: true
