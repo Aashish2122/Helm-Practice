@@ -1,0 +1,14 @@
+# Prod: more replicas, higher ceilings.
+# Note: only `limits` is overridden. `requests` comes from values.yaml.
+replicaCount: 3
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+config:
+  LOG_LEVEL: warn
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 15

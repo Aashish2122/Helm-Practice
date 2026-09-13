@@ -1,0 +1,8 @@
+apiVersion: v2
+name: notekeeper
+description: NoteKeeper API - a Node.js notes service with PostgreSQL
+type: application
+
+version: 0.1.0
+
+appVersion: "1.0.0"
