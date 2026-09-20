@@ -5,7 +5,7 @@ image:
   repository: ghcr.io/aashish2122/github-actions
   # ALWAYS quote tags. Unquoted 1.10 is parsed as a float and becomes 1.1.
   tag: "latest"
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
