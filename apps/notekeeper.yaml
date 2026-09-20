@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: notekeeper
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+
+  generators:
+    - list:
+        elements:
+          - env: dev
+            namespace: nk-dev
+          - env: prod
+            namespace: nk-prod
+
+  template:
+    metadata:
+      name: "notekeeper-{{ .env }}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Aashish2122/Helm-Practice
+        targetRevision: main
+        path: charts/notekeeper
+        helm:
+          valueFiles:
+            - "values-{{ .env }}.yaml"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{ .namespace }}"
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
