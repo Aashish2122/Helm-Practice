@@ -1,4 +1,4 @@
 # Dev: smallest possible footprint.
-replicaCount: 1
+replicaCount: 2
 config:
   LOG_LEVEL: debug
