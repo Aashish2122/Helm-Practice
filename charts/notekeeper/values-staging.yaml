@@ -1,4 +1,5 @@
 # Staging: production-shaped but smaller.
+# Only the deltas from values.yaml - everything else is inherited.
 replicaCount: 2
 
 config:
