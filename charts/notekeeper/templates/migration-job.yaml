@@ -22,7 +22,4 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           command:
             {{- toYaml .Values.migration.command | nindent 12 }}
-          envFrom:
-            - configMapRef:
-                name: {{ include "notekeeper.fullname" . }}-config
 {{- end }}
