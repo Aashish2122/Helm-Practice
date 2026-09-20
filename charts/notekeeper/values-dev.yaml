@@ -1,8 +1,4 @@
 # Dev: smallest possible footprint.
 replicaCount: 2
-autoscaling:
-  enabled: true
-  minReplicas: 2
-  maxReplicas: 4
 config:
   LOG_LEVEL: debug
