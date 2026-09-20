@@ -8,7 +8,7 @@ resources:
 config:
   LOG_LEVEL: warn
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 3
   maxReplicas: 15
 migration:
