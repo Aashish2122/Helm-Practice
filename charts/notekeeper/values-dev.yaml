@@ -2,3 +2,5 @@
 replicaCount: 2
 config:
   LOG_LEVEL: debug
+image:
+  tag: 94774708e11e06b621c0b8118190c68013a434f5
