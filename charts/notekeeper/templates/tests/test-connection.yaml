@@ -7,6 +7,10 @@ metadata:
   annotations:
     "helm.sh/hook": test
     "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook": test
+    "argocd.argoproj.io/hook": PostSync          # <-- ADD
+    "argocd.argoproj.io/hook-delete-policy": HookSucceeded
+    "helm.sh/hook-delete-policy": before-hook-creation
 spec:
   restartPolicy: Never
   containers:
