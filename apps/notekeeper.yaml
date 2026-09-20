@@ -14,6 +14,8 @@ spec:
             namespace: nk-dev
           - env: prod
             namespace: nk-prod
+          - env: staging
+            namespace: nk-staging
 
   template:
     metadata:
