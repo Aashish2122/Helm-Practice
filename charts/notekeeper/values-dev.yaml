@@ -1,12 +1,4 @@
 # Dev: smallest possible footprint.
 replicaCount: 1
-
-resources:
-  requests:
-    cpu: 25m
-    memory: 32Mi
-  limits:
-    cpu: 100m
-    memory: 64Mi
 config:
   LOG_LEVEL: debug

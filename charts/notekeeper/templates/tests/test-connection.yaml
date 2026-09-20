@@ -16,7 +16,7 @@ spec:
       args:
         - |
           set -e
-          URL="http://{{ include "notekeeper.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}"
+          URL="http://{{ include "notekeeper.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}/actuator/health"
 
           echo "==> GET ${URL}"
           curl -sf --max-time 10 "${URL}" > /dev/null

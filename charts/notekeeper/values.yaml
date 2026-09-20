@@ -2,25 +2,25 @@
 replicaCount: 2
 
 image:
-  repository: nginx
+  repository: ghcr.io/aashish2122/github-actions
   # ALWAYS quote tags. Unquoted 1.10 is parsed as a float and becomes 1.1.
-  tag: "1.27-alpine"
-  pullPolicy: IfNotPresent
+  tag: "latest"
+  pullPolicy: Always
 
 service:
   type: ClusterIP
   # Port the Service listens on.
   port: 80
   # Port the container listens on.
-  targetPort: 80
+  targetPort: 8080
 # Passed through verbatim to the container.
 resources:
   requests:
-    cpu: 50m
-    memory: 64Mi
+    cpu: 250m
+    memory: 384Mi
   limits:
-    cpu: 200m
-    memory: 128Mi
+    cpu: 1500m
+    memory: 768Mi
 # Non-sensitive config, injected as env vars.
 config:
   DB_HOST: postgres
@@ -42,3 +42,22 @@ migration:
       echo "==> Starting migration"
       sleep 5
       echo "==> Migration complete"
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: http
+  initialDelaySeconds: 0
+  periodSeconds: 20
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+startupProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: http
+  failureThreshold: 30
+  periodSeconds: 5
